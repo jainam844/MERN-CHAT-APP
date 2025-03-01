@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
+import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 
 export const login = (req, res) => {
@@ -29,7 +30,7 @@ export const singup = async (req, res) => {
             profilePic: gender == 'male' ? boyProfilePic : girlProfilePic
         })
         if (newUser) {
-
+            generateTokenAndSetCookie(newUser._id, res);
             await newUser.save();
             res.status(201).json({
                 _id: newUser._id,
