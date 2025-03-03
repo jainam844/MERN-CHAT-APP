@@ -8,15 +8,16 @@ const SignUp = () => {
     fullName: "",
     username: "",
     password: "",
-    confirmPassword: "",
+    comfirmpassword: "",
     gender: "",
   });
+  const { loading, signup } = UserSignUp()
   const handleCheckboxChange = (gender) => {
     setInputs({ ...inputs, gender });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await UserSignUp(inputs)
+    await signup(inputs)
   }
   return (
     <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
@@ -73,8 +74,8 @@ const SignUp = () => {
               type='password'
               placeholder='Confirm Password'
               className='w-full input input-bordered h-10'
-              value={inputs.confirmPassword}
-              onChange={(e) => setInputs({ ...inputs, confirmPassword: e.target.value })}
+              value={inputs.comfirmpassword}
+              onChange={(e) => setInputs({ ...inputs, comfirmpassword: e.target.value })}
 
             />
           </div>
