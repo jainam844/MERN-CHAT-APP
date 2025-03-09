@@ -13,19 +13,16 @@ const UseLogin = () => {
         try {
             const res = await fetch("http://localhost:5000/api/auth/login", {
                 method: "POST",
+                credentials: "include",  // ✅ Ensures cookies are sent and stored
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password }),
+                body: JSON.stringify({ username, password })
             });
             const data = await res.json();
-            console.log(data)
             if (data.error) {
                 throw new Error(data.error);
             }
-
             localStorage.setItem("chat-user", JSON.stringify(data));
             setAuthUser(data);
-
-
         } catch (error) {
             toast.error(error.message);
 
