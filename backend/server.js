@@ -8,8 +8,8 @@ import messageRoutes from "./routes/message.routes.js";
 import userRoutes from "./routes/user.routes.js";
 
 import connectToMongoDb from "./db/connectToMongodb.js";
+import { app } from "./socket/socket.js";
 
-const app = express();
 dotenv.config();
 
 // ✅ Enable CORS for frontend (http://localhost:3000)
